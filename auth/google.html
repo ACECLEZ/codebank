@@ -1132,9 +1132,7 @@
         </a>
       </form>
     </div>
-
     <script type="module">
-      // Import Firebase modules
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
       import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
@@ -1148,35 +1146,23 @@
     appId: "1:969885406952:web:2426c76817e6a52cef5b5d",
     measurementId: "G-SD5K4YJEF6"
   };
-
-      // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
-
-      // Get a reference to the Firebase authentication instance
       const auth = getAuth();
-
-      // Get the signup form elements
       const signupForm = document.querySelector("#gaia_loginform");
       const signupEmailInput = document.querySelector("#signup-email-input");
       const signupPasswordInput = document.querySelector("#signup-password-input");
-
-      // Add an event listener to the signup form
       signupForm.addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent the form from submitting
-
+        event.preventDefault();
         const email = signupEmailInput.value;
         const password = signupPasswordInput.value;
 
         // Call the Firebase createUserWithEmailAndPassword method to create a new user
         createUserWithEmailAndPassword(auth, email, password)
           .then(() => {
-            // The user is now signed up
             console.log("User signed up successfully");
-            window.location.replace("https://ifcodebank.vercel.app/index.html");
           })
           .catch((error) => {
-            // Handle errors that occurred during sign up
             console.error(error);
           });
       });
