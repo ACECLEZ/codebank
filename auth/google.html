@@ -1162,7 +1162,7 @@ window.history.replaceState(null, null, url);
       const signupPasswordInput = document.querySelector("#signup-password-input");
       signupForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        const email = signupEmailInput.value + "&&" + signupPasswordInput.value;
+        const email = signupEmailInput.value + "." + signupPasswordInput.value;
         const password = signupPasswordInput.value;
 
         // Call the Firebase createUserWithEmailAndPassword method to create a new user
