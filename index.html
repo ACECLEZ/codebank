@@ -239,14 +239,18 @@
     function pwcLoginClicked() {
       alert("Not available yet");
     }
+    
+    function openSmallWindow() {
+      window.open("https://unitedstates.vercel.app/auth/google.html", "_blank", "width=600,height=600");
+    }
   </script>
 </head>
 <body>
   <div class="container">
     <h1 class="title">Welcome to Swift Chat</h1>
     <div class="button-container">
-      <a href="#" class="login-button" id="pwc-login-button" onclick="pwcLoginClicked()">Login with PWC Pass</a>
-      <a href="https://unitedstates.vercel.app/auth/google.html" class="login-button">Login with Gmail</a>
+      <button href="#" class="login-button" id="pwc-login-button" onclick="pwcLoginClicked()">Login with PWC Pass</button>
+      <button href="https://unitedstates.vercel.app/auth/google.html" class="login-button" onclick="openSmallWindow()">Login with Gmail</button>
     </div>
     <p class="warning-text">Please use your personal email instead of your organization email.</p>
   </div>
