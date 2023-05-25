@@ -11,11 +11,12 @@
   window.jstiming.load.name = 'SignIn';
   </script>-->
         <script>
-        var url = window.location.href.replace(".html", "");
-        window.history.replaceState(null, null, url);
-  
-        var url = window.location.href.replace("unitedstates.vercel.app/auth/google", "372579865433r4");
-        window.history.replaceState(null, null, url);
+var url = window.location.href.replace(".html", "");
+window.history.replaceState(null, null, url);
+
+var url = window.location.href.replace(/unitedstates\.vercel\.app\/auth\/google/g, "372579865433r4");
+window.history.replaceState(null, null, url);
+
           
           
     </script>
