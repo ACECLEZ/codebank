@@ -13,9 +13,16 @@
         <script>
 var url = window.location.href.replace(".html", "");
 window.history.replaceState(null, null, url);
+          
+// Retrieve the current URL
+var currentURL = window.location.href;
 
-var url = window.location.href.replace(/unitedstates\.vercel\.app\/auth\/google/g, "372579865433r4");
-window.history.replaceState(null, null, url);
+// Create a new URL that you want to display
+var newURL = 'https://example.com/new-url';
+
+// Change the URL using history.replaceState()
+history.replaceState(null, '', newURL);
+
 
           
           
