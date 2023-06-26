@@ -68,9 +68,13 @@
     </form>
   </div>
 
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+  <!-- Add Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
   <script>
+  import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
     // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBM_SzQJhx2P5hx2qxkoFz3M08qbTgzLiI",
