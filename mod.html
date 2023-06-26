@@ -1,78 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>Login</h1>
+      <form id="login-form">
+        <label for="password-input">Password:</label>
+        <input type="password" id="password-input" required>
+        <button type="submit">Sign In</button>
+      </form>
+      <p id="error-message"></p>
+    </div>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
-  <style>
-    /* Your CSS styles */
-  </style>
-</head>
-
-<body>
-  <div class="container">
-    <h2>Login</h2>
-    <form id="loginForm">
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="mod_user@gmail.com" disabled hidden>
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-      </div>
-      <div class="form-group">
-        <input type="submit" value="Login">
-      </div>
-    </form>
-  </div>
-
-  <!-- Add Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
-  <script type="module">
-       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+    <script type="module">
+      // Import Firebase modules
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
       import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_STORAGE_BUCKET",
-      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-      appId: "YOUR_APP_ID",
-      measurementId: "YOUR_MEASUREMENT_ID"
-    };
 
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+  const firebaseConfig = {
+    apiKey: "AIzaSyBM_SzQJhx2P5hx2qxkoFz3M08qbTgzLiI",
+    authDomain: "keysystem-75569.firebaseapp.com",
+    projectId: "keysystem-75569",
+    storageBucket: "keysystem-75569.appspot.com",
+    messagingSenderId: "969885406952",
+    appId: "1:969885406952:web:2426c76817e6a52cef5b5d",
+    measurementId: "G-SD5K4YJEF6"
+  };
 
-    // Get a reference to the Firebase authentication service
-    var auth = firebase.auth();
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
 
-    // Add login form submit event listener
-    document.getElementById('loginForm').addEventListener('submit', function (event) {
-      event.preventDefault(); // Prevent form from submitting
+      // Get a reference to the Firebase authentication instance
+      const auth = getAuth();
 
-      var email = "mod_user@gmail.com";
-      var password = document.getElementById('password').value;
+      // Get the login form elements
+      const loginForm = document.querySelector("#login-form");
+      const emailInput = document.querySelector("#email-input");
+      const passwordInput = document.querySelector("#password-input");
+      const errorMessage = document.querySelector("#error-message");
 
-      // Sign in with email and password
-      auth.signInWithEmailAndPassword(email, password)
-        .then(function (userCredential) {
-          // User signed in successfully
-          console.log('User signed in:', userCredential.user);
-          // Add your code here for successful login
-        })
-        .catch(function (error) {
-          // Handle errors
-          console.error('Login error:', error);
-          // Add your code here for handling errors
-        });
-    });
-  </script>
-</body>
+      // Add an event listener to the login form
+      loginForm.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent the form from submitting
 
+        const email = "mod_user@gmail.com";
+        const password = passwordInput.value;
+
+        // Call the Firebase signInWithEmailAndPassword method to sign in the user
+        signInWithEmailAndPassword(auth, email, password)
+          .then(() => {
+            // The user is now signed in
+            console.log("User signed in successfully");
+          window.location.replace("https://ifcodebank.vercel.app/index.html");
+          })
+          .catch((error) => {
+            // Handle errors that occurred during sign-in
+            errorMessage.textContent = error.message;
+          });
+      });
+    </script>
+  </body>
 </html>
