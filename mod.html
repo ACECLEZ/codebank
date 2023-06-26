@@ -1,125 +1,304 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
+<head>
+  <title>Auto-Adjustable Menu</title>
   <style>
-  .login-container {
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    font-family: Arial, sans-serif;
-  }
+    body {
+      background-color: #000000;
+      color: #00FF00;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-  h1 {
-    text-align: center;
-    color: #333;
-  }
+    #header {
+      text-align: center;
+      background-color: #00FF00;
+      color: #000000;
+      padding: 20px;
+    }
 
-  form {
-    margin-top: 20px;
-  }
+    .section {
+      width: 80%;
+      margin: 20px auto;
+      background-color: #000000;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+      border: 2px solid #00FF00;
+    }
 
-  label {
-    display: block;
-    margin-bottom: 10px;
-    color: #666;
-  }
+    .section h2 {
+      color: #00FF00;
+      border-bottom: 2px solid #00FF00;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
 
-  input[type="txt"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
+    .function-checkbox {
+      margin-bottom: 10px;
+    }
 
-  button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+    .round-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #00FF00;
+      outline: none;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
 
-  p#error-message {
-    color: red;
-    font-style: italic;
-    margin-top: 10px;
-  }
-</style>
-  
-  <body>
-    <div class="login-container">
-      <h1>ZSG V1</h1>
-      <form id="login-form">
-        <label for="password-input">Password:</label>
-        <input type="txt" id="password-input" autocomplete="off" required>
-        <br>
-        <button type="submit">Login</button>
-      </form>
-      <p id="error-message"></p>
+    .round-checkbox:checked {
+      background-color: #00FF00;
+    }
+
+    #device-info,
+    #device-version,
+    #hide-from-recorder-label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    #device-version {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    #fps-info {
+      margin-top: 10px;
+    }
+
+    #start-injector {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #00FF00;
+      color: #000000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="header">
+    <h1>ZSG Garena V1</h1>
+  </div>
+
+  <div class="section" id="device-section">
+    <h2>Device Model</h2>
+    <p id="device-info"></p>
+    <p id="device-version"></p>
+    <div id="bit-selection">
+      <label>
+        <input type="radio" class="round-checkbox" name="bit-selection" value="32"> 32-bit
+      </label>
+      <label>
+        <input type="radio" class="round-checkbox" name="bit-selection" value="64"> 64-bit
+      </label>
     </div>
+    <br>
+    <div id="mode-sel">
+      <label>
+        <input type="radio" class="round-checkbox" name="mode" value="root"> Root
+      </label>
+      <label>
+        <input type="radio" class="round-checkbox" name="mode" value="virtual"> Virtual
+      </label>
+    </div>
+    <br>
+        <div id="server">
+      <label>
+        <input type="radio" class="round-checkbox" name="server" value="Garena"> Garena V1.6.39
+      </label>
+      <label>
+        <input type="radio" class="round-checkbox" name="server" value="Global"> Global [not available yet]
+      </label>
+    </div>
+    
+    <p id="fps-info">FPS: <span id="fps-value">0</span></p>
+  </div>
 
-    <script type="module">
-      // Import Firebase modules
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
-      import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+  <div class="section" id="function-section">
+    <h2>Vision</h2>
+          <input type="checkbox" class="round-checkbox" value="function1"> Start ESP
+    </label>
+ <br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function2"> Line
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function3"> Box
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function4"> Health
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function5"> Skeleton
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function6"> Visibility Check
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function7"> Ignore Bot
+    </label>
+    <!-- Add more function checkboxes as needed -->
+  </div>
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBM_SzQJhx2P5hx2qxkoFz3M08qbTgzLiI",
-    authDomain: "keysystem-75569.firebaseapp.com",
-    projectId: "keysystem-75569",
-    storageBucket: "keysystem-75569.appspot.com",
-    messagingSenderId: "969885406952",
-    appId: "1:969885406952:web:2426c76817e6a52cef5b5d",
-    measurementId: "G-SD5K4YJEF6"
-  };
+  <div class="section" id="function-section">
+    <h2>Aim</h2>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function1"> Activate Aimbot
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function2"> Track exposed
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function3"> Track head
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function4"> Track chest
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function5"> On trigger
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function6"> On scope
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function7"> Ignore Bot
+    </label>
+    
+    <!-- Add more function checkboxes as needed -->
+  </div>
+  
+  <div class="section" id="function-section">
+    <h2>Others [DANGEROUS]</h2>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function1"> Speed 2X
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function2"> Speed 3X
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function3"> Wide vision
+    </label><br>
+    <label class="function-checkbox">
+      <input type="checkbox" class="round-checkbox" value="function4"> Small crosshair
+    </label><br>
 
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
+    <!-- Add more function checkboxes as needed -->
+  </div>
+  
+  <div class="section" id="screen-recorder-section">
+    <h2>Flex</h2>
+    <div id="screen-recorder-checkbox">
+      <label id="hide-from-recorder-label">
+        <input type="checkbox" class="round-checkbox"> Hide from Screen Recorder
+      </label>
+    </div>
+  </div>
 
-      // Get a reference to the Firebase authentication instance
-      const auth = getAuth();
+  <button id="start-injector" onclick="launchApp()">Start Injector</button>
 
-      // Get the login form elements
-      const loginForm = document.querySelector("#login-form");
-      const emailInput = document.querySelector("#email-input");
-      const passwordInput = document.querySelector("#password-input");
-      const errorMessage = document.querySelector("#error-message");
+  <script>
+    // Get device model and Android version
+    var deviceInfo = navigator.userAgent;
+    var deviceModel = "Device: " + deviceInfo;
+    var androidVersion = deviceInfo.match(/Android\s([\d\.]+)/);
+    if (androidVersion) {
+      androidVersion = "Android Version: " + androidVersion[1];
+    } else {
+      androidVersion = "Android Version: N/A";
+    }
 
-      // Add an event listener to the login form
-      loginForm.addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent the form from submitting
+    document.getElementById("device-info").textContent = deviceModel;
+    document.getElementById("device-version").textContent = androidVersion;
 
-        const email = "mod_user@gmail.com";
-        const password = passwordInput.value;
+    // Add event listener to bit selection checkboxes
+    var bitCheckboxes = document.querySelectorAll("#bit-selection .round-checkbox");
+    bitCheckboxes.forEach(function(checkbox) {
+      checkbox.addEventListener("change", function() {
+        bitCheckboxes.forEach(function(cb) {
+          if (cb !== checkbox) {
+            cb.checked = false;
+          }
+        });
 
-        // Call the Firebase signInWithEmailAndPassword method to sign in the user
-        signInWithEmailAndPassword(auth, email, password)
-          .then(() => {
-            // The user is now signed in
-            console.log("User signed in successfully");
-            //session storage
-             const loginTime = new Date();
-      const logoutTime = new Date(loginTime.getTime() + 30 * 60000); // 30 minutes after login
-      localStorage.setItem("loginSession", logoutTime);
-            
-          window.location.replace("https://codebank-beta.vercel.app/menu.html");
-          })
-          .catch((error) => {
-            // Handle errors that occurred during sign-in
-            //errorMessage.textContent = error.message;
-            errorMessage.textContent = "USER OR DEVICE NOT REGISTERED";
-          });
+        var selectedBit = checkbox.value;
+        console.log("Selected bit:", selectedBit);
       });
-    </script>
-  </body>
+    });
+
+    // Real-time FPS display
+    var fps = document.getElementById("fps-value");
+    var startTime = Date.now();
+    var frame = 0;
+
+    function tick() {
+      var time = Date.now();
+      frame++;
+      if (time - startTime > 1000) {
+        fps.innerHTML = (frame / ((time - startTime) / 1000)).toFixed(1);
+        startTime = time;
+        frame = 0;
+      }
+      window.requestAnimationFrame(tick);
+    }
+    tick();
+
+    // Start Injector function
+ function launchApp() {
+      //var appScheme = "com.garena.game.codm";
+      var appScheme = "com.tencent.igce";
+      
+      // Check if the app is installed
+      if (isAppInstalled(appScheme)) {
+        // Open the app using the custom URL scheme
+        window.location.href = appScheme + "://";
+      } else {
+        // Redirect to app store or show a message
+        alert("App not installed");
+        // You can redirect to the app store using:
+        // window.location.href = "https://example.com/app-store-link";
+      }
+    }
+    
+    function isAppInstalled(scheme) {
+      var isInstalled = false;
+      
+      // Create an iframe with the app's custom URL scheme
+      var iframe = document.createElement("iframe");
+      iframe.style.display = "none";
+      iframe.src = scheme + "://";
+      
+      // Check if the app responds to the custom URL scheme
+      document.body.appendChild(iframe);
+      
+      // Set a timer to check if the app is opened
+      var timer = setTimeout(function() {
+        document.body.removeChild(iframe);
+        isInstalled = false;
+      }, 2000); // Timeout in milliseconds (adjust as needed)
+      
+      // Listener function to handle app open
+      function handleAppOpen() {
+        clearTimeout(timer);
+        isInstalled = true;
+        document.body.removeChild(iframe);
+        window.removeEventListener("pagehide", handleAppOpen);
+      }
+      
+      // Add event listener for pagehide to detect app open
+      window.addEventListener("pagehide", handleAppOpen);
+      
+      return isInstalled;
+    }
+  </script>
+</body>
 </html>
