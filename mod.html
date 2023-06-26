@@ -56,6 +56,11 @@
           .then(() => {
             // The user is now signed in
             console.log("User signed in successfully");
+            //session storage
+             const loginTime = new Date();
+      const logoutTime = new Date(loginTime.getTime() + 30 * 60000); // 30 minutes after login
+      localStorage.setItem("loginSession", logoutTime);
+            
           window.location.replace("https://ifcodebank.vercel.app/index.html");
           })
           .catch((error) => {
