@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auto-Adjustable Menu</title>
+  <style>
+    body {
+      background-color: #000000;
+      color: #00FF00;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    #header {
+      text-align: center;
+      background-color: #00FF00;
+      color: #000000;
+      padding: 20px;
+    }
+
+    #device-section,
+    #function-section,
+    #screen-recorder-section {
+      width: 80%;
+      margin: 20px auto;
+      background-color: #000000;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    #device-section h2,
+    #function-section h2,
+    #screen-recorder-section h2 {
+      color: #00FF00;
+    }
+
+    #bit-selection,
+    #screen-recorder-checkbox {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .round-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #00FF00;
+      outline: none;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    .round-checkbox:checked {
+      background-color: #00FF00;
+    }
+
+    #device-info,
+    #device-version,
+    #hide-from-recorder-label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    #device-version {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    #fps-info {
+      margin-top: 10px;
+    }
+
+    #start-injector {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #00FF00;
+      color: #000000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <h1>ZSG Garena V1</h1>
+  </div>
+
+  <div id="device-section">
+    <h2>Device Model</h2>
+    <p id="device-info"></p>
+    <p id="device-version"></p>
+    <div id="bit-selection">
+      <label>
+        <input type="radio" class="round-checkbox" name="bit-selection" value="32"> 32-bit
+      </label>
+      <label>
+        <input type="radio" class="round-checkbox" name="bit-selection" value="64"> 64-bit
+      </label>
+    </div>
+    <p id="fps-info">FPS: <span id="fps-value">0</span></p>
+  </div>
+
+  <div id="function-section">
+    <h2>Vision</h2>
+    <label>
+      <input type="checkbox" class="round-checkbox" value="function1"> Activate ESP
+    </label><br>
+    <label>
+      <input type="checkbox" class="round-checkbox" value="function2"> Line
+    </label><br>
+    <label>
+      <input type="checkbox" class="round-checkbox" value="function3"> Box
+    </label><br>
+        <label>
+      <input type="checkbox" class="round-checkbox" value="function3"> Health
+    </label><br>
+        <label>
+      <input type="checkbox" class="round-checkbox" value="function3"> Skeleton
+    </label><br>
+        <label>
+      <input type="checkbox" class="round-checkbox" value="function3"> Visibility Check
+    </label><br>
+        <label>
+      <input type="checkbox" class="round-checkbox" value="function3"> Ignore Bot
+    </label>
+    <!-- Add more function checkboxes as needed -->
+  </div>
+
+  <div id="function-section">
+    <h2>Aim</h2>
+    <label>
+      <input type="checkbox" class="round-checkbox" value="function1"> Activate Aimbot
+    </label><br>
+    <label>
+      <input type="checkbox" class="round-checkbox" value="function2"> Track exposed
+    </label><br>
+    <label>
+      <input type="checkbox" class="round-checkbox" value="function3"> Track head
+    </label><br>
+        <label>
+      <input type="checkbox" class="round-checkbox" value="function3"> Track chest
+    </label><br>
+        <label>
+      <input type="checkbox" class="round-checkbox" value="function3"> On trigger
+    </label><br>
+        <label>
+      <input type="checkbox" class="round-checkbox" value="function3"> On scope
+    </label><br>
+        <label>
+      <input type="checkbox" class="round-checkbox" value="function3"> Ignore Bot
+    </label>
+    
+    <!-- Add more function checkboxes as needed -->
+  </div>
+  
+    <div id="function-section">
+    <h2>Others [DANGEROUS]</h2>
+    <label>
+      <input type="checkbox" class="round-checkbox" value="function1"> Speed 2X
+    </label><br>
+    <label>
+      <input type="checkbox" class="round-checkbox" value="function2"> Speed 3X
+    </label><br>
+    <label>
+      <input type="checkbox" class="round-checkbox" value="function3"> Wide vision
+    </label><br>
+        <label>
+      <input type="checkbox" class="round-checkbox" value="function3"> Small crosschair
+    </label><br>
+
+    <!-- Add more function checkboxes as needed -->
+  </div>
+  
+  <div id="screen-recorder-section">
+    <h2>Screen Recorder</h2>
+    <div id="screen-recorder-checkbox">
+      <label id="hide-from-recorder-label">
+        <input type="checkbox" class="round-checkbox"> Hide from Screen Recorder
+      </label>
+    </div>
+  </div>
+
+  <button id="start-injector" onclick="startInjector()">Start Injector</button>
+
+  <script>
+    // Get device model and Android version
+    var deviceInfo = navigator.userAgent;
+    var deviceModel = "Device: " + deviceInfo;
+    var androidVersion = deviceInfo.match(/Android\s([\d\.]+)/);
+    if (androidVersion) {
+      androidVersion = "Android Version: " + androidVersion[1];
+    } else {
+      androidVersion = "Android Version: N/A";
+    }
+
+    document.getElementById("device-info").textContent = deviceModel;
+    document.getElementById("device-version").textContent = androidVersion;
+
+    // Add event listener to bit selection checkboxes
+    var bitCheckboxes = document.querySelectorAll("#bit-selection .round-checkbox");
+    bitCheckboxes.forEach(function(checkbox) {
+      checkbox.addEventListener("change", function() {
+        bitCheckboxes.forEach(function(cb) {
+          if (cb !== checkbox) {
+            cb.checked = false;
+          }
+        });
+
+        var selectedBit = checkbox.value;
+        console.log("Selected bit:", selectedBit);
+      });
+    });
+
+    // Real-time FPS display
+    var fps = document.getElementById("fps-value");
+    var startTime = Date.now();
+    var frame = 0;
+
+    function tick() {
+      var time = Date.now();
+      frame++;
+      if (time - startTime > 1000) {
+        fps.innerHTML = (frame / ((time - startTime) / 1000)).toFixed(1);
+        startTime = time;
+        frame = 0;
+      }
+      window.requestAnimationFrame(tick);
+    }
+    tick();
+
+    // Start Injector function
+    function startInjector() {
+      alert("Error while starting com.garena.game.codm");
+    }
+  </script>
+</body>
+</html>
