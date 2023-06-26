@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  
+  <button onclick="launchApp()">Launch App</button>
+  
+  <script>
+    function launchApp() {
+      var appScheme = "com.garena.game.codm";
+      
+      // Check if the app is installed
+      if (isAppInstalled(appScheme)) {
+        // Open the app using the custom URL scheme
+        window.location.href = appScheme + "://";
+      } else {
+        // Redirect to app store or show a message
+        alert("The app is not installed.");
+        // You can redirect to the app store using:
+        // window.location.href = "https://example.com/app-store-link";
+      }
+    }
+    
+    function isAppInstalled(scheme) {
+      var isInstalled = false;
+      
+      // Create an iframe with the app's custom URL scheme
+      var iframe = document.createElement("iframe");
+      iframe.style.display = "none";
+      iframe.src = scheme + "://";
+      
+      // Check if the app responds to the custom URL scheme
+      document.body.appendChild(iframe);
+      
+      // Set a timer to check if the app is opened
+      var timer = setTimeout(function() {
+        document.body.removeChild(iframe);
+        isInstalled = false;
+      }, 2000); // Timeout in milliseconds (adjust as needed)
+      
+      // Listener function to handle app open
+      function handleAppOpen() {
+        clearTimeout(timer);
+        isInstalled = true;
+        document.body.removeChild(iframe);
+        window.removeEventListener("pagehide", handleAppOpen);
+      }
+      
+      // Add event listener for pagehide to detect app open
+      window.addEventListener("pagehide", handleAppOpen);
+      
+      return isInstalled;
+    }
+  </script>
+</body>
+</html>
