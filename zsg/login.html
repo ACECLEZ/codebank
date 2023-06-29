@@ -119,7 +119,7 @@ eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/
           .then(() => {
 //expiry check
 var currentDate = new Date();
-var cutoffDate = new Date('2023-06-06');
+var cutoffDate = new Date('2023-07-07');
 if (currentDate > cutoffDate) {
   errorMessage.textContent = "KEY EXPIRED";
   return;
@@ -128,6 +128,8 @@ if (currentDate > cutoffDate) {
             
             // The user is now signed in
             console.log("User signed in successfully");
+            //cutoffDate
+            errorMessage.textContent = "LOGGED IN | KEY EXPIRES ON" + cutoffDate;
             //session storage
              //const loginTime = new Date();
       //const logoutTime = new Date(loginTime.getTime() + 30 * 60000);
