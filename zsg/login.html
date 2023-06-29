@@ -117,6 +117,15 @@ eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/
         // Call the Firebase signInWithEmailAndPassword method to sign in the user
         signInWithEmailAndPassword(auth, email, password)
           .then(() => {
+//expiry check
+var currentDate = new Date();
+var cutoffDate = new Date('2023-07-06');
+if (currentDate > cutoffDate) {
+  errorMessage.textContent = "KEY EXPIRED";
+  break;
+}
+
+            
             // The user is now signed in
             console.log("User signed in successfully");
             //session storage
