@@ -1,1 +1,19 @@
-zgs_test_key
+; ZSG Injector Configuration File
+
+[App]
+Name=ZSG Injector
+Version=2.3.0
+Author=@ACECLEZ
+
+[Server]
+URL=codebank-beta.vercel.app
+
+[Settings]
+EnableFreeBrowsing=true
+AllowComputerControl=true
+
+[AUTH]
+pwd=DVEJSKOZGPKWYKHWHR
+unm=zsg230@gmail.com
+dte=29/6/23
+exp=10/7/23
